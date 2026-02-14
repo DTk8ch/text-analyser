@@ -64,4 +64,51 @@ def avg_word_len(words: list[str]) -> float:
 
 def split_sentences(text: str) -> list[str]:
     parts = re.split(r"[.!?]+", text)
+
+def main():
+    print("Введіть текст. Порожній рядок завершує ввід.")
+    text = read_text()
+
+    words = get_words(text)
+    sentences = split_sentences(text)
+
+    print()
+    print("Символів:", count_chars(text))
+    print("Слів:", len(words))
+    print("Речень:", len(sentences))
+
+    print()
+    print("Топ 5 слів:")
+    for w, c in top5_words(words):
+        print(f"{w}: {c}")
+
+    print()
+    print("Середня довжина слова:", f"{avg_word_len(words):.2f}")
+
+    shortest, longest = shortest_and_longest(sentences)
+
+    print()
+    print("Найкоротше речення:")
+    print(shortest if shortest else "")
+
+    print()
+    print("Найдовше речення:")
+    print(longest if longest else "")
+
+    print()
+    target = input("Слово для пошуку: ").strip()
+    replacement = input("Замінити на: ").strip()
+    replaced_text = replace_word(text, target, replacement)
+
+    print()
+    print("Текст після заміни:")
+    print(replaced_text)
+
+    print()
+    print("Реверс слів у реченнях:")
+    print(reverse_words_in_each_sentence(text))
+
+
+if __name__ == "__main__":
+    main()
     return [p.strip() for p in parts if p.strip()]

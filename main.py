@@ -64,6 +64,8 @@ def avg_word_len(words: list[str]) -> float:
 
 def split_sentences(text: str) -> list[str]:
     parts = re.split(r"[.!?]+", text)
+    return [p.strip() for p in parts if p.strip()]
+
 
 def main():
     print("Введіть текст. Порожній рядок завершує ввід.")
@@ -111,4 +113,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    return [p.strip() for p in parts if p.strip()]
